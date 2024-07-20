@@ -27,7 +27,6 @@ add_definitions(-DUSE_HAL_DRIVER)
 
 set(SOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/main.c
-  ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32f4xx_hal_msp.c
   ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32f4xx_it.c
   ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/syscalls.c
   ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sysmem.c
