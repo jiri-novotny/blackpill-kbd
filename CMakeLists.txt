@@ -16,10 +16,10 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fdiagnostics-color=always")
 include_directories(Core/Inc)
 include_directories(lib/cmsis)
 include_directories(lib/cmsis_device_f4/Include/)
+include_directories(lib/stm32_mw_usb_device/Core/Inc/)
 include_directories(lib/stm32f4xx_hal_driver/Inc/)
-include_directories(Middlewares/ST/STM32_USB_Device_Library/Core/Inc)
-include_directories(Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc)
 include_directories(USB_DEVICE/App)
+include_directories(USB_DEVICE/Class/HID/Inc)
 include_directories(USB_DEVICE/Target)
 
 add_definitions(-DSTM32F401xC)
@@ -33,6 +33,10 @@ set(SOURCE
 
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/cmsis_device_f4/Source/Templates/gcc/startup_stm32f401xc.s
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/cmsis_device_f4/Source/Templates/system_stm32f4xx.c
+
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32_mw_usb_device/Core/Src/usbd_ioreq.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32_mw_usb_device/Core/Src/usbd_ctlreq.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32_mw_usb_device/Core/Src/usbd_core.c
 
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal.c
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_flash_ex.c
@@ -53,12 +57,8 @@ set(SOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_cortex.c
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_gpio.c
 
-  ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c
-  ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
-  ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c
-  ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
-
   ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/App/usb_device.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/Class/HID/Src/usbd_hid.c
   ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/App/usbd_desc.c
   ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/Target/usbd_conf.c
 )
