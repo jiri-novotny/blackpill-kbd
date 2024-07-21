@@ -195,7 +195,7 @@ int main(void)
         HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
         k.KEYCODE1 = 0x00;
         MX_USB_DEVICE_Send((uint8_t *) &k, sizeof(kbd_t));
-        a.autorepeatDelay = 170; // 180
+        a.autorepeatDelay = 160; // 170
       }
     }
 
