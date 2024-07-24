@@ -35,6 +35,8 @@ typedef void (*pFunction)(void);
 /* USER CODE BEGIN PD */
 #define APPLICATION1_ADDRESS 0x08004000
 #define APPLICATION2_ADDRESS 0x08010000
+
+#define BTL_ALWAYS_JUMP
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -106,6 +108,7 @@ int main(void)
     JumpAddress = *(__IO uint32_t*) (APPLICATION1_ADDRESS + 4);
     /* Initialize user application's Stack Pointer */
     __set_MSP(*(__IO uint32_t*) APPLICATION1_ADDRESS);
+#ifdef BTL_ALWAYS_JUMP
   }
   else
   {
@@ -114,8 +117,13 @@ int main(void)
     /* Initialize user application's Stack Pointer */
     __set_MSP(*(__IO uint32_t*) APPLICATION2_ADDRESS);
   }
-  ((pFunction) JumpAddress)();
-
+  pFunction JumpToApplication = (pFunction) JumpAddress;
+  JumpToApplication();
+#else
+    pFunction JumpToApplication = (pFunction) JumpAddress;
+    JumpToApplication();
+  }
+#endif
   /* USER CODE END 2 */
 
   /* Infinite loop */

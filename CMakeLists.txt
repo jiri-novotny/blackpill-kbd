@@ -29,9 +29,9 @@ include_directories(lib/stm32f4xx_hal_driver/Inc/)
 set(SOURCE
   ${CMAKE_CURRENT_SOURCE_DIR}/common/syscalls.c
   ${CMAKE_CURRENT_SOURCE_DIR}/common/sysmem.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/common/system_stm32f4xx.c
 
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/cmsis_device_f4/Source/Templates/gcc/startup_stm32f401xc.s
-  ${CMAKE_CURRENT_SOURCE_DIR}/lib/cmsis_device_f4/Source/Templates/system_stm32f4xx.c
 
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal.c
   ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_cortex.c
