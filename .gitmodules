@@ -7,3 +7,6 @@
 [submodule "lib/stm32_mw_usb_device"]
 	path = lib/stm32_mw_usb_device
 	url = https://github.com/STMicroelectronics/stm32_mw_usb_device.git
+[submodule "lib/cmsis_core"]
+	path = lib/cmsis_core
+	url = https://github.com/STMicroelectronics/cmsis-core.git

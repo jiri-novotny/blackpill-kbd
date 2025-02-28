@@ -30,12 +30,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "main.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+extern void Error_Handler(void);
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER

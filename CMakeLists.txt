@@ -22,7 +22,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fdiagnostics-color=always")
 add_definitions(-DSTM32F401xC)
 add_definitions(-DUSE_HAL_DRIVER)
 
-include_directories(lib/cmsis)
+include_directories(lib/cmsis_core/Include)
 include_directories(lib/cmsis_device_f4/Include/)
 include_directories(lib/stm32f4xx_hal_driver/Inc/)
 
@@ -68,9 +68,9 @@ elseif(BUILD_APP)
 
   include_directories(app)
   include_directories(lib/stm32_mw_usb_device/Core/Inc/)
-  include_directories(USB_DEVICE/App)
-  include_directories(USB_DEVICE/Class/HID/Inc)
-  include_directories(USB_DEVICE/Target)
+  include_directories(lib/usb/App)
+  include_directories(lib/usb/Class/HID/Inc)
+  include_directories(lib/usb/Target)
 
   set(SOURCE
     ${SOURCE}
@@ -97,10 +97,10 @@ elseif(BUILD_APP)
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_tim_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/stm32f4xx_hal_driver/Src/stm32f4xx_hal_rcc_ex.c
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/App/usb_device.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/Class/HID/Src/usbd_hid.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/App/usbd_desc.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/USB_DEVICE/Target/usbd_conf.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/usb/App/usb_device.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/usb/Class/HID/Src/usbd_hid.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/usb/App/usbd_desc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/usb/Target/usbd_conf.c
   )
 else()
   message(FATAL_ERROR "Please select target build!")
@@ -138,7 +138,7 @@ target_link_options(${PROJECT_NAME} PRIVATE
 
 # Execute post-build to print size, generate hex and bin
 add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND "echo"
+    COMMAND echo
     COMMAND ${CMAKE_SIZE} $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
     COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${CMAKE_PROJECT_NAME}> ${CMAKE_PROJECT_NAME}.hex
     COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${CMAKE_PROJECT_NAME}> ${CMAKE_PROJECT_NAME}.bin
